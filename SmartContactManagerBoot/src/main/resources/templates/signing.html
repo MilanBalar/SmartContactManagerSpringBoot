@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<section>
+
+  <div class="container">
+      <div class="row">
+         <div class="col-md-8 offset-md-2">
+             <div class="my-card mt-3">
+                             <!-- -------------------------------resiter icon--------------------------- -->
+                             <div class="container text-center">
+                                   <img style="width: 80px;" src="" alt="register-icon" th:src="@{/images/register-icon.png}" />
+                            </div>  
+                   <h1 class="text-center">SignUp Here !!</h1>
+                   <!-- --------------------form part--------------------------- -->
+						<form>
+							<div class="form-group">
+								<label for="name_">Your Name</label>
+							    <input
+									type="text" 
+									name="userName"
+									class="form-control"
+									id="name_"
+									aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="email_">Email</label>
+								<input
+									type="email" 
+									class="form-control"
+								    id="email_"
+									aria-describedby="emailHelp"> 
+									<small id="emailHelp"
+									class="form-text text-muted">We'll never share your
+									email with anyone else.</small>
+							</div>
+							<div class="form-group">
+								<label for="password_">Password</label> 
+								<input
+									type="password" 
+									class="form-control" 
+									id="password_">
+							</div>
+							<div class="form-group">
+								<label for="desc_">Description</label><br>
+								<textarea name="about" id="desc_" cols="93" rows="3"></textarea>
+								
+							</div>
+						    
+							<div class="form-group form-check">
+								<input type="checkbox" class="form-check-input"
+									id="checkbox_">
+									 <label class="form-check-label"
+									for="checkbox_"><a href="#">Accept Terms & Condition</a></label>
+							</div>
+							<div class="form-group form-check text-center">
+								<button type="submit" class="btn btn-primary btn-block">Submit</button>
+								<button type="reset" class="btn btn-danger btn-block">Reset</button>
+							</div>
+							
+						</form>
+
+						<!-- -------------------------------------------------------- -->
+  			 </div>
+         </div>
+      </div>
+  </div>
+
+</section>
+	
+</body>
+</html>
