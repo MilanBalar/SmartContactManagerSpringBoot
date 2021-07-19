@@ -11,9 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -28,8 +28,9 @@ public class TblUserLogin {
 	@Size(min = 3,max = 12,message = "Name contain 3 to 12 charactors !!")
 	private String userName;
 
-    @Pattern(regexp = "/^([\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4})?$/",message = "Invalid email !!")
-	@Column(unique = true)
+	@Email(regexp = "^(.+)@(.+)$", message = "Invalid email !!")
+	@NotBlank(message = "Please enter email id!!")
+    @Column(unique = true)
 	private String email;
 
     @Min(value = 8,message = "Password contain atleast 8 charactors")
