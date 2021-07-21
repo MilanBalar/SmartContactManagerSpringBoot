@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -33,7 +32,7 @@ public class TblUserLogin {
     @Column(unique = true)
 	private String email;
 
-    @Min(value = 8,message = "Password contain atleast 8 charactors")
+
 	private String password;
 	private String userRole;
 	private boolean isActive;

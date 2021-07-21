@@ -1,10 +1,48 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
+	<title>SignIn Page</title>
 </head>
 <body>
-	<h1>success</h1>
+<section class="banner">
+
+<!-- ------------------------Right part start -------------------------------- -->
+
+		<div class="wrapper fadeInDown">
+			<div id="formContent">
+				<!-- Tabs Titles -->
+
+
+				<!-- -------------------------------resiter icon--------------------------- -->
+				<div class="container text-center">
+					<img style="width: 80px;" src="" alt="login-icon"
+						th:src="@{/images/login_user.png}" />
+				</div>
+				
+				<h2 class="active" align="center">Loging here</h2>
+				
+				<!-- Login Form -->
+				<form th:action="@{/signIn}" method="post">
+					<input type="text" id="login" class="fadeIn second textForLogin" name="username"
+						placeholder="Email" autocomplete="off">
+						
+				   <input type="password" id="password" autocomplete="off"
+						class="fadeIn third textForLogin" name="password" placeholder="Password">
+					<input type="submit" class="fadeIn fourth" value="Log In">
+				</form>
+
+				<!-- Remind Passowrd -->
+				<div id="formFooter">
+					<a class="underlineHover" href="#">Forgot Password?</a>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- ------------------------------------end--------------------------------------- -->
+
+</section>
+	
 </body>
 </html>

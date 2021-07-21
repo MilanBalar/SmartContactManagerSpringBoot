@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -22,16 +23,27 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping("/")
 	public String home(Model m) {
          m.addAttribute("title", "Home - SmartContactManager");
 		return "home";
 	}
-
+	@PostMapping("/signIn")
+	public String signInPost(Model m) {
+         m.addAttribute("title", "SignIn - SmartContactManager");
+         return "user/DashBoard";
+	}
+	@GetMapping("/signIn")
+	public String signIn(Model m) {
+         m.addAttribute("title", "SignIn - SmartContactManager");
+         return "signIn";
+	}
 	@GetMapping("/signUp")
 	public String signingPage(Model m) {
-         m.addAttribute("title", "Signing - SmartContactManager");
+         m.addAttribute("title", "SignUp - SmartContactManager");
          m.addAttribute("user", new TblUserLogin());
 		 return "signUp";
 	}
@@ -51,6 +63,7 @@ public class UserController {
              user.setImageUrl("/default.png");
              user.setUserRole("USER");
              user.setActive(true);
+             user.setPassword(passwordEncoder.encode(user.getPassword()));
              if(!ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(user)) {
             	 results = this.userRepository.save(user);
               }

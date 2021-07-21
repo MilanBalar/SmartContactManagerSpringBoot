@@ -24,20 +24,17 @@
 					  <!-- --------------------message-end-------------------- -->
                    <!-- --------------------form part--------------------------- -->
 						<form action="" th:action="@{/saveUser}" th:method="post" th:object="${user}">
-							<div class="form-group">
+							  <div class="form-group">
 								<label for="name_">Your Name <span style="color:red">*</span></label>
 							    <input
 									type="text" 
 									name="userName"
 									th:value="${user.userName}"
-									th:classappend="${#fields.hasErrors('userName') ? 'is-invalid' : 'i'}"
+									th:classappend="${#fields.hasErrors('userName') ? 'is-invalid' : ''}"
 									class="form-control"
 									id="name_"
-									aria-describedby="emailHelp"
-									>
-								
-								    <div th:each="e:${#fields.errors('userName')}" th:text="${e}" class="invalid-feedback txtsize"></div>
-								    
+									aria-describedby="emailHelp">
+								  <div th:each="e:${#fields.errors('userName')}" th:text="${e}" class="invalid-feedback txtsize"></div>
 								</div>	
 								
 								<div class="form-group">
@@ -74,7 +71,7 @@
 								     class="form-control"
 								     name="about"
 								     placeholder="Description about your self"
-								     th:field="${user.about}" 
+								     th:text="${user.about}" 
 								     id="desc_" cols="93"
 								     rows="5"
 								     >
