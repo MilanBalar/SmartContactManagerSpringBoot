@@ -19,13 +19,19 @@
 					<img style="width: 80px;" src="" alt="login-icon"
 						th:src="@{/images/login_user.png}" />
 				</div>
-				
 				<h2 class="active" align="center">Loging here</h2>
-				
+				<!-- -----------------validation msg---------------- -->
+				 <div th:if="${param.error}" class="alert alert-danger">
+				     Invalid UserName or Password
+				 </div>
+				 <div th:if="${param.logout}" class="alert alert-success">
+				     You have been logged out
+				 </div>
+				<!-- ---------------------end---------------------- -->
 				<!-- Login Form -->
-				<form th:action="@{/signIn}" method="post">
+				<form th:action="@{/doLogin}" action="#" method="post">
 					<input type="text" id="login" class="fadeIn second textForLogin" name="username"
-						placeholder="Email" autocomplete="off">
+						placeholder="Email" autocomplete="on">
 						
 				   <input type="password" id="password" autocomplete="off"
 						class="fadeIn third textForLogin" name="password" placeholder="Password">

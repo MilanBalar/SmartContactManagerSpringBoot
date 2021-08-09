@@ -1,5 +1,7 @@
 package com.boot.web.smart.contact.springsecurity.config;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +14,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	HttpSession session;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -21,6 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		 {
 			 throw new UsernameNotFoundException("Could't found the user !!");
 		 }
+		 session.setAttribute("user", user);
 		 CustomUserDetails customUserDetails=new CustomUserDetails(user);
 		 return customUserDetails;
 	}

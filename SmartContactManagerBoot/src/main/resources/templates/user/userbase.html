@@ -10,16 +10,32 @@
    
     <!-- -------------custome css and js start----------- --> 
       <link rel="stylesheet" href="" th:href="@{/css/style.css}" /> 
-      <script src="" th:hreflang="@{/js/script.js}"></script>
+      <script src="" href="" th:href="@{/js/script.js}"></script>
+      <script type="text/javascript">
+      function toggleSidebar() {
+    		
+    		if($(".sidebar").is(":visible")){
+    			$(".sidebar").css("display","none");
+    			$(".content").css("margin-left","0%");
+    		}
+    		else{
+    			$(".sidebar").css("display","block");
+    			$(".content").css("margin-left","19%");
+    		}
+    	}
+      </script>
     <!-- -------------custome css and js end----------- --> 
 
+     <!-- -------------icons start----------- --> 
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- -------------icons end----------- --> 
     <title th:text="${title}">Base page !!</title>
   </head>
   <body>
    
     <!-- ------------------------navbar - start------------------------------ -->
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-prim">
+	<nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-prim">
 		<div class="container-fluid">
 		    <img style="width: 50px;" src="" alt="register-icon" th:src="@{/images/contacts.png}" />&nbsp;&nbsp;
 			<a class="navbar-brand" href="#"> SmartContactManager</a>
@@ -32,35 +48,42 @@
 			<div class="collapse navbar-collapse text-uppercase" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/">Home</a></li>
-					<li class="nav-item"><a class="nav-link active" href="#">About</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle active" href="#"
-						id="navbarDropdown" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Dropdown </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Action</a> <a
-								class="dropdown-item" href="#">Another action</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div></li>
-
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="signIn">Sign in</a></li>
+						aria-current="page" >Welcome &nbsp;<u><b><span style="color: white" th:text="${user.userName}"></span></b></u></a></li> 
 				
+				    
 				    <li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="signUp">Sign Up</a></li>		
+						aria-current="page" href="/logout">| &nbsp;&nbsp;<b><i class="fas fa-power-off"></i></b></a></li>		
 				</ul>
 
 			</div>
-		</div>
 	</nav>
 
 	<!-- -----------------------------navbar - end-------------------------------- -->
+	
+	   <!-- -----------------------------sidebar - start-------------------------------- -->
+	        
+	        <div class="sidebar mt-3">
+	        
+	        <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
+	           <a href="#" class="index"><i class="fas fa-house-user"></i>&nbsp Home</a>
+	           <a href="#" class="index"><i class="fas fa-user-circle"></i>&nbsp Your Profile</a>
+	           <a href="#" th:href="@{/show-contact/0}" class="index"><i class="fas fa-address-card"></i>&nbsp View Contact</a>
+	           <a href="#" th:href="@{/addContact}" class="index"><i class="fas fa-pen-fancy"></i>&nbsp Add Contact</a>
+	           <a href="#" class="index"><i class="fas fa-cogs"></i>&nbsp Settings</a>
+	           <a href="#" th:href="@{/logout}" class="index"><i class="fas fa-sign-out-alt"></i>&nbsp Logout</a>
+	        
+	           <div class="divider"></div>
+	        </div>
+	        
+	
+	    <!-- -----------------------------sidebar - end-------------------------------- -->
+	
     <!-- --------------------Right part start here------------------------ -->
     
+    <div class="content mt-5">
+      <i onclick="toggleSidebar()" class="fas fa-bars m-3 cusbar"></i>
       <div th:replace="${content}"></div>
-
+   </div>
 
     <!-- --------------------Right part end here------------------------ -->
    

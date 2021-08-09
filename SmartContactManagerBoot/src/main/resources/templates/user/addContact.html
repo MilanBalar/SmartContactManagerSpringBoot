@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/userbase::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard Page</title>
+	
+</head>
+
+<body>
+<section>
+
+<!-- ------------------------Right part start -------------------------------- -->
+  <div class="card mr-3 ml-3">
+     <div class="card-body">
+           <!-- -------------------------------resiter icon--------------------------- -->
+                             <div class="container text-center">
+                                   <img style="width: 90px;" src="" alt="contact-icon" th:src="@{/images/add-contact-icon.jpg}" />
+                            </div> 
+     
+        <h1 class="text-center" style="color:black">Add Contact</h1>
+           <div class="container-fluid mt-1">
+             <div class="row">
+                <div class="col-md-8 offset-md-2">
+							<!-- ----------------------validation message------------------ -->
+							
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}" class="alert"
+									role="alert">
+									<p th:text="${session.message.content}"></p>
+									<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								</div>
+							
+							<!-- --------------------message-end-------------------- -->
+
+							<!-- ------------------------Form logic start -------------------------------- -->
+                      <form th:action="@{/process-contact}"
+                            th:object="${contact}"
+                            enctype="multipart/form-data"
+                            method="post"
+                            class="mt-2"
+                            >
+
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+							    <input
+									type="text" name="Name" required th:text="${contact.Name}" class="form-control" placeholder="Enter name here"
+									aria-label="Username" aria-describedby="basic-addon1"/>
+							</div>
+							
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1"><i class="fas fa-plus"></i></span>
+							    <input
+									type="text" name="SecondName" required th:text="${contact.SecondName}" class="form-control" placeholder="Enter second-name here"
+									aria-label="Username" aria-describedby="basic-addon1"/>
+							</div>
+							
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1"><i class="fas fa-briefcase"></i></span>
+							    <input
+									type="text" name="Work" required th:text="${contact.Work}" class="form-control" placeholder="Enter work here"
+									aria-label="Username" aria-describedby="basic-addon1"/>
+							</div>
+							
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1">@</span>
+							    <input
+									type="text" name="email" required th:text="${contact.email}" class="form-control" placeholder="Enter email here"
+									aria-label="Username" aria-describedby="basic-addon1"/>
+							</div>
+							
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+							    <input
+									type="text" name="phone" required th:text="${contact.phone}" class="form-control" placeholder="Enter mobile number here"
+									aria-label="Username" aria-describedby="basic-addon1"/>
+							</div>
+							
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1"><i class="fas fa-upload"></i></span>
+							    <input
+									type="file" name="profileImage" required class="form-control" placeholder="Please choose file"
+									aria-label="Username" aria-describedby="basic-addon1"/>
+							</div>
+							
+							<div class="input-group mb-3">
+							   <textarea 
+							         id="mytextarea"
+								     class="form-control"
+								     name="description"
+								     placeholder="Description about your self"
+								     th:text="${contact.description}" 
+								     cols="93"
+								     rows="5"
+								     >Hello
+								</textarea>
+                           </div> 
+                           
+                           <div class="form-group form-check text-center">
+								<button type="submit" class="btn btn-success">Submit</button>
+								<button type="reset" class="btn btn-danger">Reset</button>
+							</div>
+                      </form>
+					<!-- ------------------------Form logic end -------------------------------- -->
+                </div>
+             </div>
+           </div>
+      </div>
+  </div>
+ 
+
+
+<!-- ------------------------------------end--------------------------------------- -->
+
+</section>
+	
+</body>
+</html>

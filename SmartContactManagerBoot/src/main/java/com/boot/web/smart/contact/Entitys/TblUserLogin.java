@@ -32,8 +32,7 @@ public class TblUserLogin {
     @Column(unique = true)
 	private String email;
 
-
-	private String password;
+    private String password;
 	private String userRole;
 	private boolean isActive;
 	private String imageUrl;
